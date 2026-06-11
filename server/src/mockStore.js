@@ -377,6 +377,12 @@ export const findMockUserByEmail = async (email) => {
   return state.users.find((user) => user.email.toLowerCase() === String(email).toLowerCase()) || null;
 };
 
+export const findMockUserByPhone = async (phone) => {
+  await initializeMockData();
+  if (!phone) return null;
+  return state.users.find((user) => user.phone === phone) || null;
+};
+
 export const findMockUserById = async (id) => {
   await initializeMockData();
   return state.users.find((user) => user._id === id) || null;

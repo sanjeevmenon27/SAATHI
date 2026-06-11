@@ -5,6 +5,7 @@ import {
   createMockSaathiProfile,
   createMockUser,
   findMockUserByEmail,
+  findMockUserByPhone,
   getMockSaathiProfile,
   getMockUserPayload,
   initializeMockData,
@@ -42,7 +43,18 @@ export const register = async (req, res) => {
     await initializeMockData();
     const existingUser = await findMockUserByEmail(email);
     if (existingUser) {
-      return res.status(400).json({ message: "Email already exists" });
+      if (role === "elder_family") {
+        return res.status(400).json({ message: `Email is already registered. Associated phone number: ${existingUser.phone || "Not provided"}` });
+      } else {
+        return res.status(400).json({ message: "Email already exists" });
+      }
+    }
+
+    if (role === "elder_family" && phone) {
+      const existingUserByPhone = await findMockUserByPhone(phone);
+      if (existingUserByPhone) {
+        return res.status(400).json({ message: `Phone number ${phone} is already registered` });
+      }
     }
 
     const user = await createMockUser({
@@ -74,7 +86,18 @@ export const register = async (req, res) => {
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return res.status(400).json({ message: "Email already exists" });
+    if (role === "elder_family") {
+      return res.status(400).json({ message: `Email is already registered. Associated phone number: ${existingUser.phone || "Not provided"}` });
+    } else {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+  }
+
+  if (role === "elder_family" && phone) {
+    const existingUserByPhone = await User.findOne({ phone });
+    if (existingUserByPhone) {
+      return res.status(400).json({ message: `Phone number ${phone} is already registered` });
+    }
   }
 
   const user = await User.create({
