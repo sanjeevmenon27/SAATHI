@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+client/dist
+server/node_modules
+client/node_modules
+npm-debug.log*
+*.apk
+*.log
+Vulnerability Test Results/
+*temp*
+*.timestamp*
