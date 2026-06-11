@@ -1,16 +1,14 @@
-import { HeartHandshake, Home, LogIn, LogOut, Menu, Settings, UserRound, UserRoundCog, X } from "lucide-react";
+import { HeartHandshake, Home, LogIn, LogOut, Menu, UserRound, UserRoundCog, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useLockBodyScroll } from "./useLockBodyScroll";
-import { ApiSettingsModal } from "./ApiSettingsModal";
 
 export const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const primaryLinks = useMemo(() => {
     if (user) {
@@ -90,14 +88,6 @@ export const Navbar = () => {
                 Join Now
               </NavLink>
             )}
-            <button
-              type="button"
-              onClick={() => setIsSettingsOpen(true)}
-              className="inline-flex rounded-2xl border border-saffron-200 bg-white p-3 text-cocoa-900 shadow-card transition active:scale-[0.98]"
-              aria-label="API Settings"
-            >
-              <Settings size={20} />
-            </button>
             <button
               type="button"
               onClick={() => setIsMenuOpen((current) => !current)}
@@ -182,7 +172,6 @@ export const Navbar = () => {
           })}
         </div>
       </nav>
-      <ApiSettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </>
   );
 };

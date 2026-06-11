@@ -42,7 +42,7 @@ export const RegisterPage = () => {
       navigate("/profile-setup");
     } catch (err) {
       if (!err.response) {
-        setError("Unable to connect to the server. If running locally, please click the gear settings icon in the top right to configure your computer's IP address (e.g. http://192.168.1.X:5000/api).");
+        setError("Unable to connect to the server. Please make sure the backend server is running.");
       } else {
         setError(err.response?.data?.message || "Unable to register");
       }

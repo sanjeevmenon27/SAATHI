@@ -22,8 +22,6 @@ if "%COMPUTER_IP%"=="" (
   set "COMPUTER_IP=localhost"
 )
 echo [SaathiCare APK Builder] Detected IP: %COMPUTER_IP%
-echo VITE_API_URL=http://%COMPUTER_IP%:5000/api> client\.env
-echo [SaathiCare APK Builder] Updated client\.env with VITE_API_URL=http://%COMPUTER_IP%:5000/api
 
 if "%LIVE_RELOAD_MODE%"=="1" (
   echo [SaathiCare APK Builder] Backing up capacitor.config.json...

@@ -1,34 +1,23 @@
 import axios from "axios";
 
-const hostname = typeof window !== "undefined" ? window.location.hostname : "localhost";
-const defaultApiUrl = import.meta.env.PROD
-  ? "/api"
-  : `http://${hostname}:5000/api`;
-
 export const getApiUrl = () => {
-  if (typeof window !== "undefined") {
-    let customUrl = localStorage.getItem("saathicare_api_url");
-    if (customUrl) {
-      customUrl = customUrl.trim();
-      if (!customUrl.endsWith("/api") && !customUrl.endsWith("/api/")) {
-        customUrl = customUrl.replace(/\/$/, "") + "/api";
-      }
-      return customUrl;
-    }
+  if (import.meta.env.PROD) {
+    return "/api";
   }
 
-  const baseApiUrl = import.meta.env.VITE_API_URL || defaultApiUrl;
-
-  // Auto-detect if running on Android (webview / emulator) and trying to access localhost
-  if (typeof window !== "undefined" && baseApiUrl.includes("localhost")) {
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname || "localhost";
     const isAndroid = /android/i.test(navigator.userAgent) || 
                       (window.Capacitor && window.Capacitor.getPlatform?.() === "android");
-    if (isAndroid) {
-      return baseApiUrl.replace("localhost", "10.0.2.2");
+
+    if (isAndroid && (hostname === "localhost" || hostname === "127.0.0.1")) {
+      return "http://10.0.2.2:5000/api";
     }
+
+    return `http://${hostname}:5000/api`;
   }
 
-  return baseApiUrl;
+  return "http://localhost:5000/api";
 };
 
 export const api = axios.create({});
