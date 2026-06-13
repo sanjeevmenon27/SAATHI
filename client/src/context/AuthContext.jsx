@@ -8,17 +8,12 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const loadUser = async () => {
-    const token = localStorage.getItem("saathicare_token");
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
+    // SC-24: No localStorage check needed — the httpOnly cookie is sent automatically.
+    // If no valid cookie exists, the server returns 401 and we clear user state.
     try {
       const { data } = await api.get("/auth/me");
       setUser(data);
     } catch (_error) {
-      localStorage.removeItem("saathicare_token");
       setUser(null);
     } finally {
       setLoading(false);
@@ -31,21 +26,25 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (payload) => {
     const { data } = await api.post("/auth/login", payload);
-    localStorage.setItem("saathicare_token", data.token);
+    // SC-24: Server sets httpOnly cookie; we only store non-sensitive user info in state
     setUser(data.user);
     return data.user;
   };
 
   const register = async (payload) => {
     const { data } = await api.post("/auth/register", payload);
-    localStorage.setItem("saathicare_token", data.token);
+    // SC-24: Server sets httpOnly cookie; no token stored in client-side storage
     setUser(data.user);
     return data.user;
   };
 
-  const logout = () => {
-    localStorage.removeItem("saathicare_token");
-    setUser(null);
+  // SC-11/SC-24: Server-side logout clears the httpOnly cookie on the server
+  const logout = async () => {
+    try {
+      await api.post("/auth/logout");
+    } finally {
+      setUser(null);
+    }
   };
 
   const refreshUser = async () => {

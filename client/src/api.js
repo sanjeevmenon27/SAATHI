@@ -7,7 +7,7 @@ export const getApiUrl = () => {
 
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname || "localhost";
-    const isAndroid = /android/i.test(navigator.userAgent) || 
+    const isAndroid = /android/i.test(navigator.userAgent) ||
                       (window.Capacitor && window.Capacitor.getPlatform?.() === "android");
 
     if (isAndroid && (hostname === "localhost" || hostname === "127.0.0.1")) {
@@ -20,14 +20,12 @@ export const getApiUrl = () => {
   return "http://localhost:5000/api";
 };
 
-export const api = axios.create({});
+// SC-24: withCredentials ensures httpOnly cookies are sent on every request.
+// The JWT is no longer stored in localStorage (inaccessible to JavaScript).
+export const api = axios.create({ withCredentials: true });
 
 api.interceptors.request.use((request) => {
   request.baseURL = getApiUrl();
-  const token = localStorage.getItem("saathicare_token");
-  if (token) {
-    request.headers.Authorization = `Bearer ${token}`;
-  }
+  // SC-24: No Authorization header — the httpOnly cookie is sent automatically by the browser.
   return request;
 });
-

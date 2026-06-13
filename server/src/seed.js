@@ -73,7 +73,7 @@ const saathis = [
       rating: 4.8,
       totalSessions: 34,
       isAvailable: true,
-      aadharNumber: "123456789012"
+      aadharNumber: "000000000001" // SC-18: Clearly synthetic — not a real Aadhaar number
     }
   },
   {
@@ -94,7 +94,7 @@ const saathis = [
       rating: 4.6,
       totalSessions: 22,
       isAvailable: true,
-      aadharNumber: "987654321098"
+      aadharNumber: "000000000002" // SC-18: Clearly synthetic
     }
   },
   {
@@ -115,7 +115,7 @@ const saathis = [
       rating: 4.9,
       totalSessions: 41,
       isAvailable: false,
-      aadharNumber: "456789012345"
+      aadharNumber: "000000000003" // SC-18: Clearly synthetic
     }
   },
   {
@@ -136,7 +136,7 @@ const saathis = [
       rating: 4.5,
       totalSessions: 18,
       isAvailable: true,
-      aadharNumber: "567890123456"
+      aadharNumber: "000000000004" // SC-18: Clearly synthetic
     }
   },
   {
@@ -157,7 +157,7 @@ const saathis = [
       rating: 0,
       totalSessions: 0,
       isAvailable: false,
-      aadharNumber: "890123456789"
+      aadharNumber: "000000000005" // SC-18: Clearly synthetic
     }
   }
 ];

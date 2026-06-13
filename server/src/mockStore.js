@@ -84,7 +84,7 @@ const seedData = {
         rating: 4.8,
         totalSessions: 34,
         isAvailable: true,
-        aadharNumber: "123456789012"
+        aadharNumber: "000000000001" // SC-18: Clearly synthetic — not a real Aadhaar number
       }
     },
     {
@@ -105,7 +105,7 @@ const seedData = {
         rating: 4.6,
         totalSessions: 22,
         isAvailable: true,
-        aadharNumber: "987654321098"
+        aadharNumber: "000000000002" // SC-18: Clearly synthetic
       }
     },
     {
@@ -126,7 +126,7 @@ const seedData = {
         rating: 4.9,
         totalSessions: 41,
         isAvailable: false,
-        aadharNumber: "456789012345"
+        aadharNumber: "000000000003" // SC-18: Clearly synthetic
       }
     },
     {
@@ -147,7 +147,7 @@ const seedData = {
         rating: 4.5,
         totalSessions: 18,
         isAvailable: true,
-        aadharNumber: "567890123456"
+        aadharNumber: "000000000004" // SC-18: Clearly synthetic
       }
     },
     {
@@ -168,7 +168,7 @@ const seedData = {
         rating: 0,
         totalSessions: 0,
         isAvailable: false,
-        aadharNumber: "890123456789"
+        aadharNumber: "000000000005" // SC-18: Clearly synthetic
       }
     }
   ],
@@ -217,8 +217,12 @@ const amountForDuration = (duration) => {
 };
 
 const sanitizeUser = (user) => {
-  const { password, ...rest } = user;
-  return { ...rest };
+  // SC-07: Exclude password hash and mask Aadhaar number in all serialized user objects
+  const { password, aadharNumber, ...rest } = user;
+  if (aadharNumber) {
+    rest.aadharNumber = `XXXX-XXXX-${String(aadharNumber).slice(-4)}`;
+  }
+  return rest;
 };
 
 const withSaathiProfile = (user) => {
@@ -383,6 +387,12 @@ export const findMockUserByPhone = async (phone) => {
   return state.users.find((user) => user.phone === phone) || null;
 };
 
+// SC-04/SC-16/SC-17: Needed by controllers for ownership checks before mutations
+export const findMockBookingById = async (bookingId) => {
+  await initializeMockData();
+  return state.bookings.find((item) => item._id === bookingId) || null;
+};
+
 export const findMockUserById = async (id) => {
   await initializeMockData();
   return state.users.find((user) => user._id === id) || null;
@@ -432,6 +442,7 @@ export const createMockSaathiProfile = async (data) => {
 
 export const getMockSaathiProfile = async (userId) => {
   await initializeMockData();
+  // SC-07: Return raw profile for internal checks; masking is done in sanitizeUser/toJSON
   return state.saathiProfiles.find((profile) => profile.userId === userId) || null;
 };
 

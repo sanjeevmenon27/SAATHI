@@ -4,7 +4,9 @@ import { config } from "./config.js";
 
 export const hashPassword = (password) => bcrypt.hash(password, 10);
 export const comparePassword = (plain, hashed) => bcrypt.compare(plain, hashed);
-export const signToken = (id) => jwt.sign({ id }, config.jwtSecret, { expiresIn: "7d" });
+
+// SC-11: Reduced token lifetime from 7d to 2h to limit stolen-token exposure
+export const signToken = (id) => jwt.sign({ id }, config.jwtSecret, { expiresIn: "2h" });
 
 export const calculateAmount = (duration) => {
   switch (duration) {

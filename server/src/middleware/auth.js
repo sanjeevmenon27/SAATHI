@@ -1,17 +1,33 @@
 import jwt from "jsonwebtoken";
 import { config } from "../config.js";
 import { isDbConnected } from "../db.js";
-import { findMockUserById, getMockUserPayload, initializeMockData } from "../mockStore.js";
+import { getMockUserPayload, initializeMockData } from "../mockStore.js";
 import { User } from "../models/User.js";
+import { isTokenBlocked } from "../redisClient.js";
 
 export const protect = async (req, res, next) => {
-  const header = req.headers.authorization;
-  if (!header?.startsWith("Bearer ")) {
+  let token;
+
+  // SC-24: Prefer httpOnly cookie; fall back to Authorization header for compatibility
+  if (req.cookies?.saathicare_token) {
+    token = req.cookies.saathicare_token;
+  } else {
+    const header = req.headers.authorization;
+    if (header?.startsWith("Bearer ")) {
+      token = header.split(" ")[1];
+    }
+  }
+
+  if (!token) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
+  // SC-11: Full revocation check using Redis blocklist
+  if (await isTokenBlocked(token)) {
+    return res.status(401).json({ message: "Token has been revoked" });
+  }
+
   try {
-    const token = header.split(" ")[1];
     const decoded = jwt.verify(token, config.jwtSecret);
     let user;
 
