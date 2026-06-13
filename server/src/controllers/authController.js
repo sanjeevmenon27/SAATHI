@@ -45,7 +45,7 @@ const setAuthCookie = (res, token) => {
   res.cookie("saathicare_token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
     maxAge: 2 * 60 * 60 * 1000 // 2 hours — matches JWT expiry (SC-11)
   });
 };
@@ -237,7 +237,7 @@ export const logout = async (req, res) => {
   res.clearCookie("saathicare_token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict"
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "strict"
   });
   res.json({ message: "Logged out successfully" });
 };

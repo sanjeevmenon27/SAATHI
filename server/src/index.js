@@ -17,10 +17,22 @@ const app = express();
 // SC-14: Security headers via helmet (CSP, HSTS, X-Frame-Options, etc.)
 app.use(helmet());
 
-// SC-03: Strict CORS — explicit origin from config, not wildcard
+const allowedOrigins = [
+  config.clientUrl,
+  "http://localhost",
+  "capacitor://localhost",
+  "ionic://localhost"
+];
+
 app.use(
   cors({
-    origin: config.clientUrl,
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true
   })
 );
