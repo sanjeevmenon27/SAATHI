@@ -1,0 +1,2 @@
+Server running on port 5000
+[0mGET /api/health [32m200[0m 3.905 ms - 15[0m

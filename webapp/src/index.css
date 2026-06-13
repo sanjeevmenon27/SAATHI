@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  color: #3f2a16;
+  background: #fff9f1;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-2xl border border-saffron-200 bg-cream-50 px-4 py-4 text-base text-cocoa-900 outline-none transition duration-200 placeholder:text-cocoa-700/70 focus:border-saffron-500 focus:bg-white focus:ring-4 focus:ring-saffron-100 sm:text-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-saffron-500 px-5 py-3 text-base font-semibold text-white shadow-card transition duration-200 hover:bg-saffron-700 active:scale-[0.98] active:bg-saffron-700 disabled:cursor-not-allowed disabled:opacity-60 sm:text-lg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-saffron-300 bg-white px-5 py-3 text-base font-semibold text-cocoa-900 transition duration-200 hover:bg-cream-50 active:scale-[0.98] active:bg-cream-100 sm:text-lg;
+  }
+
+  .btn-danger {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-red-500 px-5 py-3 text-base font-semibold text-white shadow-card transition duration-200 active:scale-[0.98] active:bg-red-600 sm:text-lg;
+  }
+
+  .stat-card {
+    @apply rounded-[28px] bg-cream-50 p-5 shadow-card ring-1 ring-saffron-100;
+  }
+
+  .stat-label {
+    @apply text-sm font-semibold uppercase tracking-wide text-cocoa-700;
+  }
+
+  .stat-value {
+    @apply mt-2 text-3xl font-bold sm:text-4xl;
+  }
+
+  .mobile-card {
+    @apply rounded-[28px] bg-white p-4 shadow-card ring-1 ring-saffron-100 sm:p-5;
+  }
+
+  .dashboard-list {
+    @apply space-y-4;
+  }
+
+  .skeleton {
+    @apply animate-pulse rounded-2xl bg-saffron-100/80;
+  }
+}

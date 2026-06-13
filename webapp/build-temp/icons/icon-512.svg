@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SaathiCare icon">
+  <rect width="512" height="512" rx="128" fill="#fff9f1"/>
+  <rect x="64" y="64" width="384" height="384" rx="104" fill="#f29f38"/>
+  <path d="M256 128c25 0 47 8 64 25 35 35 35 92 0 127l-64 64-64-64c-35-35-35-92 0-127 17-17 39-25 64-25Z" fill="#fff9f1"/>
+  <path d="M155 294c26-20 59-31 101-31s75 11 101 31" fill="none" stroke="#3f2a16" stroke-linecap="round" stroke-width="24"/>
+</svg>

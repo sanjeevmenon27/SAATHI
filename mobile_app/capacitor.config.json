@@ -1,0 +1,10 @@
+{
+  "appId": "com.saathicare.app",
+  "appName": "SaathiCare",
+  "webDir": "../webapp/dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": []
+  }
+}
