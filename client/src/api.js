@@ -1,14 +1,19 @@
 import axios from "axios";
 
 export const getApiUrl = () => {
+  const isAndroid = typeof window !== "undefined" && 
+                    (/android/i.test(navigator.userAgent) ||
+                    (window.Capacitor && window.Capacitor.getPlatform?.() === "android"));
+
   if (import.meta.env.PROD) {
+    if (isAndroid) {
+      return "https://saathicare-ptix.onrender.com/api";
+    }
     return "/api";
   }
 
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname || "localhost";
-    const isAndroid = /android/i.test(navigator.userAgent) ||
-                      (window.Capacitor && window.Capacitor.getPlatform?.() === "android");
 
     if (isAndroid && (hostname === "localhost" || hostname === "127.0.0.1")) {
       return "http://10.0.2.2:5000/api";
