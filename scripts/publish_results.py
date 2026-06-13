@@ -1,4 +1,5 @@
 import os
+import datetime
 import openpyxl
 
 def parse_report(filepath):
@@ -61,8 +62,8 @@ def parse_report(filepath):
                 'Passed': passed,
                 'Failed': failed,
                 'Pass Rate %': round((passed / total * 100) if total else 0, 2),
-                'Duration (sec)': 'N/A',
-                'End Time': 'N/A'
+                'Duration (sec)': '-',
+                'End Time': datetime.datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d %H:%M:%S')
             }
 
         elif 'Summary by Severity' in wb.sheetnames and 'Finding Results' in wb.sheetnames:
@@ -83,8 +84,8 @@ def parse_report(filepath):
                 'Passed': passed,
                 'Failed': failed,
                 'Pass Rate %': round((passed / total * 100) if total else 0, 2),
-                'Duration (sec)': 'N/A',
-                'End Time': 'N/A'
+                'Duration (sec)': '-',
+                'End Time': datetime.datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d %H:%M:%S')
             }
 
             ws_details = wb['Finding Results']
