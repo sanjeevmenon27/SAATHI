@@ -7,42 +7,26 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test-reporting:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Website Tests
-        run: |
-          echo "Running website tests..."
-          sleep 2
-          echo "Website tests passed successfully."
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-      - name: Run Mobile App Tests
-        run: |
-          echo "Running mobile app tests..."
-          sleep 2
-          echo "Mobile app tests passed successfully."
-
-      - name: Run Backend Tests
-        run: |
-          echo "Running backend tests..."
-          sleep 2
-          echo "Backend tests passed successfully."
+      - name: Install dependencies
+        run: pip install openpyxl
 
       - name: Generate Summary Report
-        run: |
-          echo "# Full PDD Test Summary Report" >> test-summary.md
-          echo "" >> test-summary.md
-          echo "## Website Tests" >> test-summary.md
-          echo "- :white_check_mark: All website tests passed successfully." >> test-summary.md
-          echo "" >> test-summary.md
-          echo "## Mobile App Tests" >> test-summary.md
-          echo "- :white_check_mark: All mobile app tests passed successfully." >> test-summary.md
-          echo "" >> test-summary.md
-          echo "## Backend Tests" >> test-summary.md
-          echo "- :white_check_mark: All backend tests passed successfully." >> test-summary.md
-          echo "" >> test-summary.md
-          
-          cat test-summary.md >> $GITHUB_STEP_SUMMARY
+        run: python scripts/publish_results.py
+
+      - name: Upload Test Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test-Reports
+          path: |
+            *.xlsx
