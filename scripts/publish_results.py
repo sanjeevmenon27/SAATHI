@@ -8,22 +8,87 @@ def parse_report(filepath):
             return {}, []
         wb = openpyxl.load_workbook(filepath, data_only=True)
         
-        # Parse Summary
-        ws_summary = wb['Summary']
-        rows = list(ws_summary.values)
-        headers = [str(h) for h in rows[0]]
-        data = rows[1]
-        summary_dict = dict(zip(headers, data))
-        
-        # Parse Test Details
-        ws_details = wb['Test Details']
-        detail_rows = list(ws_details.values)
-        detail_headers = [str(h) for h in detail_rows[0]]
+        summary_dict = {}
         details = []
-        for r in detail_rows[1:]:
-            if r and r[0] is not None:
-                details.append(dict(zip(detail_headers, r)))
+
+        if 'Summary' in wb.sheetnames and 'Test Details' in wb.sheetnames:
+            ws_summary = wb['Summary']
+            rows = list(ws_summary.values)
+            if len(rows) >= 2:
+                headers = [str(h) for h in rows[0]]
+                data = rows[1]
+                summary_dict = dict(zip(headers, data))
+                
+            ws_details = wb['Test Details']
+            detail_rows = list(ws_details.values)
+            if len(detail_rows) >= 1:
+                detail_headers = [str(h) for h in detail_rows[0]]
+                for r in detail_rows[1:]:
+                    if r and r[0] is not None:
+                        details.append(dict(zip(detail_headers, r)))
+                        
+        elif 'Severity Summary' in wb.sheetnames and 'Vulnerability Findings' in wb.sheetnames:
+            ws_summary = wb['Severity Summary']
+            rows = list(ws_summary.values)
+            total = 0
+            for r in rows[1:]:
+                if r and r[0] == 'Total':
+                    total = r[1]
+            summary_dict = {
+                'Test Suite': 'Vulnerability Scan',
+                'Total Tests': total,
+                'Passed': 'N/A',
+                'Failed': 'N/A',
+                'Pass Rate %': 'N/A',
+                'Duration (sec)': 'N/A',
+                'End Time': 'N/A'
+            }
             
+            ws_details = wb['Vulnerability Findings']
+            detail_rows = list(ws_details.values)
+            if len(detail_rows) >= 1:
+                detail_headers = [str(h) for h in detail_rows[0]]
+                for r in detail_rows[1:]:
+                    if r and r[0] is not None:
+                        d = dict(zip(detail_headers, r))
+                        d['Test Name'] = d.get('Vulnerability Type', '')
+                        details.append(d)
+
+        elif 'Summary by Severity' in wb.sheetnames and 'Finding Results' in wb.sheetnames:
+            ws_summary = wb['Summary by Severity']
+            rows = list(ws_summary.values)
+            total = 0
+            passed = 0
+            failed = 0
+            for r in rows[1:]:
+                if r and r[0] == 'TOTAL':
+                    total = r[1]
+                    passed = r[2]
+                    failed = r[3]
+            
+            summary_dict = {
+                'Test Suite': 'Security Scan',
+                'Total Tests': total,
+                'Passed': passed,
+                'Failed': failed,
+                'Pass Rate %': round((passed / total * 100) if total else 0, 2),
+                'Duration (sec)': 'N/A',
+                'End Time': 'N/A'
+            }
+
+            ws_details = wb['Finding Results']
+            detail_rows = list(ws_details.values)
+            if len(detail_rows) >= 1:
+                detail_headers = [str(h) for h in detail_rows[0]]
+                for r in detail_rows[1:]:
+                    if r and r[0] is not None:
+                        d = dict(zip(detail_headers, r))
+                        d['Test Name'] = str(d.get('Category', '')) + ' Check'
+                        d['Status'] = d.get('Overall Result', '')
+                        details.append(d)
+        else:
+            print(f"Unknown format in {filepath}")
+        
         return summary_dict, details
     except Exception as e:
         print(f"Error parsing {filepath}: {e}")
@@ -50,8 +115,16 @@ def add_section(markdown_output, summary, details, title, icon):
         markdown_output.append("| No. | Category | Test Name | Status |")
         markdown_output.append("|---|---|---|---|")
         for r in details:
-            status_emoji = "✅ PASSED" if str(r.get("Status")).upper() == "PASSED" else "❌ FAILED"
-            markdown_output.append(f"| {r.get('No.', '-')} | {r.get('Category', '-')} | `{r.get('Test Name', '-')}` | {status_emoji} |")
+            status_val = str(r.get("Status", r.get("Overall Result", ""))).upper()
+            if "PASS" in status_val:
+                status_emoji = "✅ PASSED"
+            elif "FAIL" in status_val:
+                status_emoji = "❌ FAILED"
+            else:
+                status_emoji = status_val if status_val.strip() else "⚠️ N/A"
+            
+            finding_id = r.get('No.', r.get('Finding ID', '-'))
+            markdown_output.append(f"| {finding_id} | {r.get('Category', '-')} | `{r.get('Test Name', '-')}` | {status_emoji} |")
         markdown_output.append("\n</details>\n")
 
 def main():
