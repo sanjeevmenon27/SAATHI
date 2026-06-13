@@ -61,7 +61,7 @@ const __dirname = path.dirname(__filename);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
-  const clientBuildPath = path.join(__dirname, "../../client/dist");
+  const clientBuildPath = path.join(__dirname, "../../webapp/dist");
   app.use(express.static(clientBuildPath));
 
   app.get("*", (req, res) => {
