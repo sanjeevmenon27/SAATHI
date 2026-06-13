@@ -34,18 +34,11 @@ def parse_report(filepath):
             for r in rows[1:]:
                 if r and r[0] == 'Total':
                     total = r[1]
-            summary_dict = {
-                'Test Suite': 'Vulnerability Scan',
-                'Total Tests': total,
-                'Passed': 'N/A',
-                'Failed': 'N/A',
-                'Pass Rate %': 'N/A',
-                'Duration (sec)': 'N/A',
-                'End Time': 'N/A'
-            }
             
             ws_details = wb['Vulnerability Findings']
             detail_rows = list(ws_details.values)
+            passed = 0
+            failed = 0
             if len(detail_rows) >= 1:
                 detail_headers = [str(h) for h in detail_rows[0]]
                 for r in detail_rows[1:]:
@@ -53,6 +46,24 @@ def parse_report(filepath):
                         d = dict(zip(detail_headers, r))
                         d['Test Name'] = d.get('Vulnerability Type', '')
                         details.append(d)
+                        status_val = str(d.get('Status', '')).upper()
+                        if 'PASS' in status_val:
+                            passed += 1
+                        elif 'FAIL' in status_val:
+                            failed += 1
+                            
+            if total == 0:
+                total = len(details)
+
+            summary_dict = {
+                'Test Suite': 'Vulnerability Scan',
+                'Total Tests': total,
+                'Passed': passed,
+                'Failed': failed,
+                'Pass Rate %': round((passed / total * 100) if total else 0, 2),
+                'Duration (sec)': 'N/A',
+                'End Time': 'N/A'
+            }
 
         elif 'Summary by Severity' in wb.sheetnames and 'Finding Results' in wb.sheetnames:
             ws_summary = wb['Summary by Severity']
