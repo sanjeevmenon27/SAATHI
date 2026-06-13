@@ -20,6 +20,7 @@ app.use(helmet());
 const allowedOrigins = [
   config.clientUrl,
   "http://localhost",
+  "https://localhost",
   "capacitor://localhost",
   "ionic://localhost"
 ];
