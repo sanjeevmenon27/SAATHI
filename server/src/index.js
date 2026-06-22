@@ -15,7 +15,10 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 const app = express();
 
 // SC-14: Security headers via helmet (CSP, HSTS, X-Frame-Options, etc.)
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginEmbedderPolicy: false
+}));
 
 const allowedOrigins = [
   config.clientUrl,
