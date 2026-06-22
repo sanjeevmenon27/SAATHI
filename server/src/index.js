@@ -15,7 +15,13 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 const app = express();
 
 // SC-14: Security headers via helmet (CSP, HSTS, X-Frame-Options, etc.)
-app.use(helmet());
+app.set("trust proxy", 1);
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
 
 const allowedOrigins = [
   config.clientUrl,
@@ -28,7 +34,13 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Allow if no origin (like mobile apps or curl), or if origin is in allowedOrigins
+      // Also allow if the origin includes the Render app domain.
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".onrender.com")
+      ) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
