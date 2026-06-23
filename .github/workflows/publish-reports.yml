@@ -1,0 +1,20 @@
+name: Publish QA Reports
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  upload-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: Enterprise-Test-Reports
+          path: Final_Test_Reports/*.xlsx
+          retention-days: 30
