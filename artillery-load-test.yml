@@ -1,0 +1,109 @@
+# SaathiCare — Artillery Load Testing Configuration
+# ==================================================
+# Usage:
+#   npx artillery run artillery-load-test.yml
+#   npx artillery run --environment stress artillery-load-test.yml
+
+config:
+  target: "{{ $processEnvironment.BASE_URL || 'https://saathicare.onrender.com' }}"
+  phases:
+    # BASELINE: 100 concurrent users for 1 minute
+    - name: "Warm up"
+      duration: 10
+      arrivalRate: 10
+    - name: "Baseline load"
+      duration: 50
+      arrivalRate: 100
+  environments:
+    stress:
+      phases:
+        - name: "Ramp to 200"
+          duration: 30
+          arrivalRate: 200
+        - name: "Hold 200"
+          duration: 30
+          arrivalRate: 200
+        - name: "Ramp to 500"
+          duration: 30
+          arrivalRate: 500
+        - name: "Hold 500"
+          duration: 30
+          arrivalRate: 500
+    spike:
+      phases:
+        - name: "Normal load"
+          duration: 10
+          arrivalRate: 50
+        - name: "Spike"
+          duration: 5
+          arrivalRate: 500
+        - name: "Sustained spike"
+          duration: 30
+          arrivalRate: 500
+        - name: "Recovery"
+          duration: 15
+          arrivalRate: 50
+    endurance:
+      phases:
+        - name: "Endurance"
+          duration: 1800
+          arrivalRate: 100
+  defaults:
+    headers:
+      Content-Type: "application/json"
+  plugins:
+    ensure: {}
+  ensure:
+    thresholds:
+      - http.response_time.p95: 2000
+      - http.response_time.p99: 5000
+
+scenarios:
+  - name: "Health Check"
+    weight: 40
+    flow:
+      - get:
+          url: "/api/health"
+          capture:
+            - json: "$"
+              as: "healthResponse"
+      - think: 1
+
+  - name: "Landing Page Load"
+    weight: 30
+    flow:
+      - get:
+          url: "/"
+      - think: 1
+
+  - name: "Login Flow"
+    weight: 20
+    flow:
+      - post:
+          url: "/api/auth/login"
+          json:
+            email: "priya@example.com"
+            password: "password123"
+      - think: 2
+
+  - name: "Full User Journey"
+    weight: 10
+    flow:
+      - get:
+          url: "/"
+      - think: 1
+      - get:
+          url: "/login"
+      - think: 1
+      - post:
+          url: "/api/auth/login"
+          json:
+            email: "priya@example.com"
+            password: "password123"
+          capture:
+            - json: "$.user"
+              as: "user"
+      - think: 2
+      - get:
+          url: "/api/health"
+      - think: 1

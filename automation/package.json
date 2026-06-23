@@ -1,0 +1,15 @@
+{
+  "name": "saathicare-e2e-automation",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Selenium E2E automation framework for SaathiCare",
+  "private": true,
+  "scripts": {
+    "test": "node runner.js",
+    "test:local": "BASE_URL=http://localhost:5173 node runner.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.27.0",
+    "xlsx": "^0.18.5",
+    "chromedriver": "^131.0.0"
+  }
+}

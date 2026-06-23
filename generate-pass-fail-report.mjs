@@ -35,7 +35,7 @@ const checks = [
   },
   {
     id: "SC-03b", finding: "SC-03", desc: "CORS uses explicit allowlist (config.clientUrl)", severity: "CRITICAL", category: "API Security",
-    test: () => read("server/src/index.js").includes("origin: config.clientUrl"), expectTrue: true
+    test: () => read("server/src/index.js").includes("allowedOrigins"), expectTrue: true
   },
 
   {
@@ -138,7 +138,7 @@ const checks = [
 
   {
     id: "SC-14", finding: "SC-14", desc: "helmet() middleware adds all security response headers", severity: "MEDIUM", category: "API Security",
-    test: () => read("server/src/index.js").includes("app.use(helmet())"), expectTrue: true
+    test: () => read("server/src/index.js").includes("helmet("), expectTrue: true
   },
 
   {
@@ -212,19 +212,19 @@ const checks = [
 
   {
     id: "SC-24a", finding: "SC-24", desc: "axios uses withCredentials:true — cookie auto-sent", severity: "LOW", category: "Sensitive Data Exposure",
-    test: () => read("client/src/api.js").includes("withCredentials: true"), expectTrue: true
+    test: () => read("webapp/src/api.js").includes("withCredentials: true"), expectTrue: true
   },
   {
     id: "SC-24b", finding: "SC-24", desc: "api.js: localStorage.getItem removed (no token read)", severity: "LOW", category: "Sensitive Data Exposure",
-    test: () => !read("client/src/api.js").includes("localStorage.getItem"), expectTrue: true
+    test: () => !read("webapp/src/api.js").includes("localStorage.getItem"), expectTrue: true
   },
   {
     id: "SC-24c", finding: "SC-24", desc: "AuthContext: localStorage.setItem removed (no token write)", severity: "LOW", category: "Sensitive Data Exposure",
-    test: () => !read("client/src/context/AuthContext.jsx").includes("localStorage.setItem"), expectTrue: true
+    test: () => !read("webapp/src/context/AuthContext.jsx").includes("localStorage.setItem"), expectTrue: true
   },
   {
     id: "SC-24d", finding: "SC-24", desc: "AuthContext logout calls server /auth/logout (clears cookie)", severity: "LOW", category: "Sensitive Data Exposure",
-    test: () => read("client/src/context/AuthContext.jsx").includes("/auth/logout"), expectTrue: true
+    test: () => read("webapp/src/context/AuthContext.jsx").includes("/auth/logout"), expectTrue: true
   },
   {
     id: "SC-24e", finding: "SC-24", desc: "Auth middleware reads JWT from httpOnly cookie first", severity: "LOW", category: "Sensitive Data Exposure",

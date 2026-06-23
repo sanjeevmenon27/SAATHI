@@ -1,0 +1,87 @@
+name: Deploy Reports to GitHub Pages
+
+on:
+  workflow_run:
+    workflows: ["SaathiCare Deploy & E2E Test"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy-reports:
+    name: Publish Reports to GitHub Pages
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: "📥 Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: "📥 Download E2E Reports"
+        uses: actions/download-artifact@v4
+        with:
+          name: E2E-Selenium-Test-Reports
+          path: pages/reports/latest/e2e/
+          run-id: ${{ github.event.workflow_run.id }}
+        continue-on-error: true
+
+      - name: "📥 Download Security Reports"
+        uses: actions/download-artifact@v4
+        with:
+          name: Backend-Security-Assessment
+          path: pages/reports/latest/security/
+          run-id: ${{ github.event.workflow_run.id }}
+        continue-on-error: true
+
+      - name: "📄 Generate Index Page"
+        run: |
+          mkdir -p pages/reports/latest
+          BUILD_NUM="${{ github.run_number }}"
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          cat > pages/index.html << INDEXEOF
+          <!DOCTYPE html>
+          <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>SaathiCare Test Reports</title>
+          <style>
+          *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;padding:2rem}
+          .card{background:#1e293b;border-radius:12px;padding:2rem;margin-bottom:1rem;border:1px solid #334155}
+          .card:hover{border-color:#3b82f6}h1{color:#f8fafc;font-size:2rem;margin-bottom:1rem}
+          a{color:#60a5fa;text-decoration:none}a:hover{text-decoration:underline}
+          .meta{color:#64748b;font-size:.875rem}
+          </style></head><body>
+          <h1>🧪 SaathiCare Test Reports Dashboard</h1>
+          <p class="meta">Build #${BUILD_NUM} | ${TIMESTAMP}</p>
+          <br/>
+          <div class="card"><h2><a href="reports/latest/e2e/HTML/execution-report.html">📊 E2E Test Report (HTML)</a></h2>
+          <p>Full Selenium E2E execution report with 450+ test cases</p></div>
+          <div class="card"><h2><a href="reports/latest/security/executive-summary.md">🔐 Security Assessment</a></h2>
+          <p>Backend security audit with 400+ test cases</p></div>
+          <div class="card"><h2><a href="reports/latest/e2e/Summary/summary.md">📋 E2E Summary</a></h2>
+          <p>Markdown summary of test execution</p></div>
+          </body></html>
+          INDEXEOF
+
+      - name: "📦 Setup GitHub Pages"
+        uses: actions/configure-pages@v4
+
+      - name: "📤 Upload Pages Artifact"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages/
+
+      - name: "🚀 Deploy to GitHub Pages"
+        id: deployment
+        uses: actions/deploy-pages@v4

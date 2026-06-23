@@ -1,0 +1,53 @@
+name: Publish Enterprise Test Reports
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish-reports:
+    name: Generate and Publish QA Reports
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: |
+          npm install xlsx fs path
+
+      # (Assuming the reports are generated dynamically or already exist in the repo)
+      # In a real run, you would execute your actual test commands here:
+      # - run: npm run test:all
+
+      - name: Reformat Excel Reports to Enterprise Standard
+        run: |
+          node scripts/reformat-excel.mjs
+
+      - name: Upload Test Reports as Action Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SaathiCare-Enterprise-Test-Reports
+          path: Final_Test_Reports/*_v2.xlsx
+          retention-days: 30
+
+      - name: Push Reports to GitHub Pages / Repository
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Final_Test_Reports
+          publish_branch: gh-pages
+          destination_dir: reports
+          keep_files: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'docs: Auto-publish Enterprise QA Excel Reports [skip ci]'

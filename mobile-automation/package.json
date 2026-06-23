@@ -1,0 +1,12 @@
+{
+  "name": "saathicare-mobile-e2e",
+  "version": "1.0.0",
+  "description": "Appium E2E framework for SaathiCare Android app",
+  "private": true,
+  "scripts": {
+    "test": "node runner.js"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

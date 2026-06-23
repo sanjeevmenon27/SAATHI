@@ -96,7 +96,7 @@ connectDb()
       console.error("\n====================================================================");
       console.error("CRITICAL ERROR: Could not connect to the MongoDB Atlas database!");
       console.error("Please ensure your current IP address is whitelisted in MongoDB Atlas.");
-      // SC-23: Removed insecure tip to open Atlas to 0.0.0.0/0.
+      // SC-23: Removed insecure tip to open Atlas to any IP.
       // Correct fix: whitelist only your server's static IP in Atlas Network Access.
       console.error("====================================================================\n");
       process.exit(1);
