@@ -147,10 +147,10 @@ def main():
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     reports = [
-        ("Mobile App Security Test", "app security test.xlsx", "🔐"),
-        ("Mobile App Selenium Testing", "app seleium testing.xlsx", "📱"),
-        ("Backend Saathi Care Result", "backend saati care result.xlsx", "⚙️"),
-        ("Frontend Saathi Care Result", "frontend saathi care result.xlsx", "💻")
+        ("Mobile App Selenium Testing", "Final_Test_Reports/Mobile_App_Test_Report_v2.xlsx", "📱"),
+        ("Backend Saathi Care Result", "Final_Test_Reports/Backend_API_Security_Report_v2.xlsx", "⚙️"),
+        ("Frontend Saathi Care Result", "Final_Test_Reports/Frontend_E2E_Test_Report_v2.xlsx", "💻"),
+        ("Backend Load Testing", "Final_Test_Reports/Load_Testing_Report_v2.xlsx", "🚀")
     ]
     
     markdown_output = []
