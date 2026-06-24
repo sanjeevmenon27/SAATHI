@@ -5,12 +5,12 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
-import { envConfig } from "./config.js";
-import { connectDb } from "./db.js";
-import { initRedis } from "./redisClient.js";
-import adminRoutes from "./routes/adminRoutes.js";
-import authRoutes from "./routes/authRoutes.js";
-import bookingRoutes from "./routes/bookingRoutes.js";
+import { envConfig } from "../backend/config.js";
+import { connectDb } from "../backend/db.js";
+import { initRedis } from "../backend/redisClient.js";
+import adminRoutes from "../backend/routes/adminRoutes.js";
+import authRoutes from "../backend/routes/authRoutes.js";
+import bookingRoutes from "../backend/routes/bookingRoutes.js";
 
 const app = express();
 
