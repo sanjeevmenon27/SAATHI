@@ -85,12 +85,9 @@ connectDb()
   .then(async (connected) => {
     if (!connected) {
       console.error("\n====================================================================");
-      console.error("CRITICAL ERROR: Could not connect to the MongoDB Atlas database!");
-      console.error("Please ensure your current IP address is whitelisted in MongoDB Atlas.");
-      // SC-23: Removed insecure tip to open Atlas to 0.0.0.0/0.
-      // Correct fix: whitelist only your server's static IP in Atlas Network Access.
+      console.error("WARNING: Could not connect to the MongoDB Atlas database!");
+      console.error("The server will start anyway and fall back to the local MockStore.");
       console.error("====================================================================\n");
-      process.exit(1);
     }
     app.listen(config.port, () => {
       console.log(`Server running on port ${config.port}`);
@@ -98,5 +95,8 @@ connectDb()
   })
   .catch((error) => {
     console.error("Database connection failed", error);
-    process.exit(1);
+    // Continuing without database
+    app.listen(config.port, () => {
+      console.log(`Server running on port ${config.port} (Mock Mode)`);
+    });
   });
