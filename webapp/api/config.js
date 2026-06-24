@@ -12,7 +12,7 @@ const jwtSecret = process.env.JWT_SECRET || "05877ca97cf8dcb45e79414c046c28b2732
 
 export const config = {
   port: process.env.PORT || 5000,
-  mongoUri: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/saathicare",
+  mongoUri: process.env.MONGO_URI || "mongodb+srv://sanjeevsmenon27_db_user:Prosanjeev2005@saathicare.vrrjjdw.mongodb.net/saathicare?retryWrites=true&w=majority",
   jwtSecret: jwtSecret,
   clientUrl: process.env.CLIENT_URL || "http://localhost:5173"
 };
