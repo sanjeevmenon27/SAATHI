@@ -5,7 +5,7 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
-import { config } from "./config.js";
+import { envConfig } from "./config.js";
 import { connectDb } from "./db.js";
 import { initRedis } from "./redisClient.js";
 import adminRoutes from "./routes/adminRoutes.js";
@@ -21,7 +21,7 @@ app.use(helmet({
 }));
 
 const allowedOrigins = [
-  config.clientUrl,
+  envConfig.clientUrl,
   "http://localhost",
   "https://localhost",
   "capacitor://localhost",

@@ -1,0 +1,573 @@
+{
+  "users": [
+    {
+      "_id": "8798c55a-5d11-47fd-a172-d1524c498dbd",
+      "name": "SaathiCare Admin",
+      "email": "admin@saathicare.com",
+      "password": "$2a$10$Z5.wGr1.DoqqeJjB9jmlNOsyj8r00W.3TX44XLpbjQbFvpIIhkgtq",
+      "role": "admin",
+      "phone": "9000066666",
+      "address": "Chennai HQ",
+      "profilePhoto": "https://placehold.co/120x120?text=AD",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:08.543Z",
+      "updatedAt": "2026-06-24T03:26:08.543Z"
+    },
+    {
+      "_id": "9b825736-ad41-4011-8518-9aff54076be6",
+      "name": "Meenakshi Raman",
+      "email": "meenakshi@example.com",
+      "password": "$2a$10$EZS.C3GmY3QxCftmB59ScebKe3uiDVlKnA4AY/YGMxI0u9gK2/kPe",
+      "role": "elder_family",
+      "phone": "9876543210",
+      "address": "Mylapore, Chennai",
+      "profilePhoto": "https://placehold.co/120x120?text=MR",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:08.634Z",
+      "updatedAt": "2026-06-24T03:26:08.634Z"
+    },
+    {
+      "_id": "f911bfd1-abf1-43cd-8e5d-518dd4687a10",
+      "name": "Arvind Kumar",
+      "email": "arvind@example.com",
+      "password": "$2a$10$Gr91TGwMbk1RcpcqnfjsTOS1Zh8eVyIaP85.uOEkBEKwQivIhzs5O",
+      "role": "elder_family",
+      "phone": "9123456780",
+      "address": "Coimbatore, Tamil Nadu",
+      "profilePhoto": "https://placehold.co/120x120?text=AK",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:08.730Z",
+      "updatedAt": "2026-06-24T03:26:08.730Z"
+    },
+    {
+      "_id": "2c4cccaf-76ef-41f2-ab92-56226ca710f0",
+      "name": "Priya Natarajan",
+      "email": "priya@example.com",
+      "password": "$2a$10$j9Jyp0TN1ncF6xV3E2XSaOfuie3ShRar7GIGTEd28yNqzUkgx6dRq",
+      "role": "elder_family",
+      "phone": "9345678120",
+      "address": "Madurai, Tamil Nadu",
+      "profilePhoto": "https://placehold.co/120x120?text=PN",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:08.814Z",
+      "updatedAt": "2026-06-24T03:26:08.814Z"
+    },
+    {
+      "_id": "f140f76b-2fa6-4c37-8d10-e0babb2b2e3e",
+      "name": "Ranganayaki Ammal",
+      "email": "ranganayaki@example.com",
+      "password": "$2a$10$RO/sR9XyBji7xX3WOkj8G.gZQ825Hb6cZHMsrispbmuItcDP5ndfy",
+      "role": "elder_family",
+      "phone": "9440012345",
+      "address": "Adyar, Chennai",
+      "profilePhoto": "https://placehold.co/120x120?text=RA",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:08.894Z",
+      "updatedAt": "2026-06-24T03:26:08.894Z"
+    },
+    {
+      "_id": "1210a28b-bd8a-4db3-8609-b688b9545fec",
+      "name": "Subramanian Iyer",
+      "email": "subramanian@example.com",
+      "password": "$2a$10$A22rZ910linHk6yNdVEygutI8ZWc006Br9Mh7SU3bEzy6aWS0IOvy",
+      "role": "elder_family",
+      "phone": "9440054321",
+      "address": "Thanjavur, Tamil Nadu",
+      "profilePhoto": "https://placehold.co/120x120?text=SI",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:09.006Z",
+      "updatedAt": "2026-06-24T03:26:09.006Z"
+    },
+    {
+      "_id": "f7e61b7d-a9be-454f-b3e6-710138d32cea",
+      "name": "Kalaivani S",
+      "email": "kalaivani@example.com",
+      "password": "$2a$10$JyDkHT/F654WUVBRYjaW8uTbJ44YidiEFcOGxgQEv4YxJbBqpi9Fm",
+      "role": "saathi",
+      "phone": "9000011111",
+      "address": "T Nagar, Chennai",
+      "profilePhoto": "https://placehold.co/120x120?text=KS",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:09.090Z",
+      "updatedAt": "2026-06-24T03:26:09.090Z"
+    },
+    {
+      "_id": "976c6bf0-3635-475e-9bc1-24699bc5f86b",
+      "name": "Suresh Babu",
+      "email": "suresh@example.com",
+      "password": "$2a$10$1rcb1r9uqpqLKNgZrrnYEuQPhog/N/UnnMGE0qF72e9NcWM3wHI1S",
+      "role": "saathi",
+      "phone": "9000022222",
+      "address": "Velachery, Chennai",
+      "profilePhoto": "https://placehold.co/120x120?text=SB",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:09.200Z",
+      "updatedAt": "2026-06-24T03:26:09.200Z"
+    },
+    {
+      "_id": "7ae3743d-4a4a-458f-b145-1ffdeef39f48",
+      "name": "Farzana Ali",
+      "email": "farzana@example.com",
+      "password": "$2a$10$goqNnIFGGBGwh.cXg5su4.QmluWfmxyR1Gk2VpbPDoqiu0AleAdAK",
+      "role": "saathi",
+      "phone": "9000033333",
+      "address": "Anna Nagar, Chennai",
+      "profilePhoto": "https://placehold.co/120x120?text=FA",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:09.282Z",
+      "updatedAt": "2026-06-24T03:26:09.282Z"
+    },
+    {
+      "_id": "bd323d86-cefc-4701-975e-0263fb7f21fa",
+      "name": "Muthu Raj",
+      "email": "muthu@example.com",
+      "password": "$2a$10$vAdinyTiGg/hX4NKHMOKLeOMfw8GPvGvTpaolQdfhzxYtvf6dCOK6",
+      "role": "saathi",
+      "phone": "9000044444",
+      "address": "Trichy, Tamil Nadu",
+      "profilePhoto": "https://placehold.co/120x120?text=MR",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:09.351Z",
+      "updatedAt": "2026-06-24T03:26:09.351Z"
+    },
+    {
+      "_id": "b1214782-1a95-4188-912e-eb6083ddb50f",
+      "name": "Nivetha John",
+      "email": "nivetha@example.com",
+      "password": "$2a$10$x0v8x/KE3Wx0C1nyjnTpl.7i4WIojheYhvcE0e/NC8G0AZUCJo2gO",
+      "role": "saathi",
+      "phone": "9000055555",
+      "address": "Salem, Tamil Nadu",
+      "profilePhoto": "https://placehold.co/120x120?text=NJ",
+      "isSuspended": false,
+      "createdAt": "2026-06-24T03:26:09.425Z",
+      "updatedAt": "2026-06-24T03:26:09.425Z"
+    }
+  ],
+  "saathiProfiles": [
+    {
+      "_id": "7af3ac16-9b91-48eb-8978-6866083c83b6",
+      "userId": "f7e61b7d-a9be-454f-b3e6-710138d32cea",
+      "bio": "Gentle hospital companion with strong wheelchair assistance experience.",
+      "skills": [
+        "Hospital Escort",
+        "Companionship"
+      ],
+      "languagesSpoken": [
+        "Tamil",
+        "English"
+      ],
+      "backgroundCheckStatus": "approved",
+      "rating": 4.8,
+      "totalSessions": 34,
+      "isAvailable": true,
+      "aadharNumber": "000000000001",
+      "createdAt": "2026-06-24T03:26:09.200Z",
+      "updatedAt": "2026-06-24T03:26:09.200Z"
+    },
+    {
+      "_id": "6d4cbe11-9fe9-446d-83c3-566c4096a961",
+      "userId": "976c6bf0-3635-475e-9bc1-24699bc5f86b",
+      "bio": "Errands and daily support specialist with calm communication style.",
+      "skills": [
+        "Errands",
+        "Daily Check-in Call",
+        "Companionship"
+      ],
+      "languagesSpoken": [
+        "Tamil",
+        "Telugu"
+      ],
+      "backgroundCheckStatus": "approved",
+      "rating": 4.6,
+      "totalSessions": 22,
+      "isAvailable": true,
+      "aadharNumber": "000000000002",
+      "createdAt": "2026-06-24T03:26:09.282Z",
+      "updatedAt": "2026-06-24T03:26:09.282Z"
+    },
+    {
+      "_id": "cf6d367e-e83b-4411-bad1-96e821d4702c",
+      "userId": "7ae3743d-4a4a-458f-b145-1ffdeef39f48",
+      "bio": "Patient tech helper for video calls, telehealth apps, and smartphones.",
+      "skills": [
+        "Tech Help",
+        "Daily Check-in Call"
+      ],
+      "languagesSpoken": [
+        "English",
+        "Hindi",
+        "Tamil"
+      ],
+      "backgroundCheckStatus": "approved",
+      "rating": 4.9,
+      "totalSessions": 41,
+      "isAvailable": false,
+      "aadharNumber": "000000000003",
+      "createdAt": "2026-06-24T03:26:09.351Z",
+      "updatedAt": "2026-06-24T03:26:09.351Z"
+    },
+    {
+      "_id": "bbda32d7-22e6-43c5-8185-86a2766d31b4",
+      "userId": "bd323d86-cefc-4701-975e-0263fb7f21fa",
+      "bio": "Long-form companionship visits with reading, walks, and meal reminders.",
+      "skills": [
+        "Companionship",
+        "Errands"
+      ],
+      "languagesSpoken": [
+        "Tamil"
+      ],
+      "backgroundCheckStatus": "approved",
+      "rating": 4.5,
+      "totalSessions": 18,
+      "isAvailable": true,
+      "aadharNumber": "000000000004",
+      "createdAt": "2026-06-24T03:26:09.425Z",
+      "updatedAt": "2026-06-24T03:26:09.425Z"
+    },
+    {
+      "_id": "62701f43-8cdd-411a-98ae-dfe699cf11a7",
+      "userId": "b1214782-1a95-4188-912e-eb6083ddb50f",
+      "bio": "Pending verification companion focused on elder comfort and calls.",
+      "skills": [
+        "Daily Check-in Call",
+        "Companionship"
+      ],
+      "languagesSpoken": [
+        "Tamil",
+        "Malayalam"
+      ],
+      "backgroundCheckStatus": "pending",
+      "rating": 0,
+      "totalSessions": 0,
+      "isAvailable": false,
+      "aadharNumber": "000000000005",
+      "createdAt": "2026-06-24T03:26:09.505Z",
+      "updatedAt": "2026-06-24T03:26:09.505Z"
+    }
+  ],
+  "bookings": [
+    {
+      "_id": "e65355e3-6a9c-44e9-8684-2928fc48fa0e",
+      "elderId": "9b825736-ad41-4011-8518-9aff54076be6",
+      "saathiId": "f7e61b7d-a9be-454f-b3e6-710138d32cea",
+      "serviceType": "Hospital Escort",
+      "date": "2026-05-18",
+      "time": "09:00",
+      "duration": "2hr",
+      "status": "confirmed",
+      "notes": "Cardiology review and wheelchair help",
+      "location": "Apollo Hospital, Chennai",
+      "liveStatus": "Saathi assigned",
+      "rating": 5,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.505Z",
+      "updatedAt": "2026-06-24T03:26:09.505Z"
+    },
+    {
+      "_id": "b0aef4ac-f1ab-459d-a61f-d4f002a8980f",
+      "elderId": "9b825736-ad41-4011-8518-9aff54076be6",
+      "saathiId": "976c6bf0-3635-475e-9bc1-24699bc5f86b",
+      "serviceType": "Daily Check-in Call",
+      "date": "2026-05-20",
+      "time": "19:00",
+      "duration": "1hr",
+      "status": "pending",
+      "notes": "Call daughter after check-in",
+      "location": "Phone support - Mylapore",
+      "liveStatus": "Waiting for Saathi confirmation",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.505Z",
+      "updatedAt": "2026-06-24T03:26:09.505Z"
+    },
+    {
+      "_id": "b9dcdf4e-3d97-4f64-acfc-82d38a6c19a8",
+      "elderId": "f911bfd1-abf1-43cd-8e5d-518dd4687a10",
+      "saathiId": "bd323d86-cefc-4701-975e-0263fb7f21fa",
+      "serviceType": "Companionship",
+      "date": "2026-05-10",
+      "time": "16:00",
+      "duration": "half day",
+      "status": "completed",
+      "notes": "Evening walk and medication reminders",
+      "location": "RS Puram, Coimbatore",
+      "liveStatus": "Visit completed",
+      "rating": 5,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "d1059fd7-a41a-4300-bc88-acb4f4eec315",
+      "elderId": "2c4cccaf-76ef-41f2-ab92-56226ca710f0",
+      "saathiId": "7ae3743d-4a4a-458f-b145-1ffdeef39f48",
+      "serviceType": "Tech Help",
+      "date": "2026-05-12",
+      "time": "11:30",
+      "duration": "1hr",
+      "status": "completed",
+      "notes": "Set up WhatsApp video calling",
+      "location": "KK Nagar, Madurai",
+      "liveStatus": "Visit completed",
+      "rating": 5,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "7c7ae4da-4f38-43ba-a93e-6986b26fa63a",
+      "elderId": "f911bfd1-abf1-43cd-8e5d-518dd4687a10",
+      "saathiId": "976c6bf0-3635-475e-9bc1-24699bc5f86b",
+      "serviceType": "Errands",
+      "date": "2026-05-22",
+      "time": "10:00",
+      "duration": "2hr",
+      "status": "confirmed",
+      "notes": "Pharmacy pickup and grocery stop",
+      "location": "Saibaba Colony, Coimbatore",
+      "liveStatus": "Visit route planned",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "203e8f58-0a8f-4386-a8d1-efd6acc61037",
+      "elderId": "2c4cccaf-76ef-41f2-ab92-56226ca710f0",
+      "saathiId": "f7e61b7d-a9be-454f-b3e6-710138d32cea",
+      "serviceType": "Hospital Escort",
+      "date": "2026-05-08",
+      "time": "08:30",
+      "duration": "half day",
+      "status": "cancelled",
+      "notes": "Follow-up visit cancelled by family",
+      "location": "Meenakshi Mission Hospital, Madurai",
+      "liveStatus": "Cancelled",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "f8da48c4-8753-4574-8f15-e6ef4d4b529c",
+      "elderId": "9b825736-ad41-4011-8518-9aff54076be6",
+      "saathiId": "bd323d86-cefc-4701-975e-0263fb7f21fa",
+      "serviceType": "Companionship",
+      "date": "2026-05-24",
+      "time": "15:00",
+      "duration": "2hr",
+      "status": "declined",
+      "notes": "Tamil-only conversation preferred",
+      "location": "Mylapore, Chennai",
+      "liveStatus": "Saathi unavailable",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "2abf7ce0-f9ff-4086-adaa-495e4c726837",
+      "elderId": "2c4cccaf-76ef-41f2-ab92-56226ca710f0",
+      "saathiId": "976c6bf0-3635-475e-9bc1-24699bc5f86b",
+      "serviceType": "Daily Check-in Call",
+      "date": "2026-05-14",
+      "time": "20:00",
+      "duration": "1hr",
+      "status": "in_progress",
+      "notes": "Check dinner and blood sugar log",
+      "location": "Madurai phone check-in",
+      "liveStatus": "Call in progress",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "735607c8-cf07-47b0-be20-3c4a276bdc16",
+      "elderId": "9b825736-ad41-4011-8518-9aff54076be6",
+      "saathiId": null,
+      "serviceType": "Hospital Escort",
+      "date": "2026-05-25",
+      "time": "08:00",
+      "duration": "2hr",
+      "status": "pending",
+      "notes": "Needs wheelchair support and calm conversation at the lab.",
+      "location": "Mylapore, Chennai",
+      "liveStatus": "Waiting for a Saathi",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "cfd7a40c-46a8-4747-af6e-39c99e9a5d82",
+      "elderId": "f911bfd1-abf1-43cd-8e5d-518dd4687a10",
+      "saathiId": null,
+      "serviceType": "Errands",
+      "date": "2026-05-26",
+      "time": "10:30",
+      "duration": "1hr",
+      "status": "pending",
+      "notes": "Medicine pickup, milk, and help checking the receipt.",
+      "location": "RS Puram, Coimbatore",
+      "liveStatus": "Waiting for a Saathi",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "08f42819-e359-4530-9e49-371e439abc39",
+      "elderId": "2c4cccaf-76ef-41f2-ab92-56226ca710f0",
+      "saathiId": null,
+      "serviceType": "Tech Help",
+      "date": "2026-05-27",
+      "time": "16:00",
+      "duration": "1hr",
+      "status": "pending",
+      "notes": "Needs help with WhatsApp video call and recharge app.",
+      "location": "Madurai, Tamil Nadu",
+      "liveStatus": "Waiting for a Saathi",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "21614041-69a2-4e91-b0a4-a2fa11c94619",
+      "elderId": "f140f76b-2fa6-4c37-8d10-e0babb2b2e3e",
+      "saathiId": null,
+      "serviceType": "Companionship",
+      "date": "2026-05-28",
+      "time": "17:00",
+      "duration": "2hr",
+      "status": "pending",
+      "notes": "Prefers Tamil conversation, evening walk, and tea-time company.",
+      "location": "Adyar, Chennai",
+      "liveStatus": "Waiting for a Saathi",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "72c26f8c-08e0-4ed1-9efe-60746227af22",
+      "elderId": "1210a28b-bd8a-4db3-8609-b688b9545fec",
+      "saathiId": null,
+      "serviceType": "Daily Check-in Call",
+      "date": "2026-05-29",
+      "time": "19:30",
+      "duration": "1hr",
+      "status": "pending",
+      "notes": "Needs a daily reminder call for dinner and medicines.",
+      "location": "Thanjavur, Tamil Nadu",
+      "liveStatus": "Waiting for a Saathi",
+      "rating": null,
+      "quotedPrice": null,
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    }
+  ],
+  "visitReports": [
+    {
+      "_id": "bcf7f526-e9a3-4cf7-b24b-a66afb45699c",
+      "bookingId": "b9dcdf4e-3d97-4f64-acfc-82d38a6c19a8",
+      "tasksCompleted": [
+        "Walked in the park",
+        "Reviewed medicine box",
+        "Had evening tea together"
+      ],
+      "elderMood": "Relaxed and chatty",
+      "concerns": "Requested a slightly earlier visit next time.",
+      "submittedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "a04f4f82-8df0-452f-b81c-a63dde3b3aeb",
+      "bookingId": "d1059fd7-a41a-4300-bc88-acb4f4eec315",
+      "tasksCompleted": [
+        "Installed WhatsApp",
+        "Saved family contacts",
+        "Tested video call"
+      ],
+      "elderMood": "Happy and confident",
+      "concerns": "Needs a printed one-page guide.",
+      "submittedAt": "2026-06-24T03:26:09.506Z"
+    }
+  ],
+  "payments": [
+    {
+      "_id": "d796bdc6-7ce7-4645-b478-66ba8f39ad28",
+      "bookingId": "e65355e3-6a9c-44e9-8684-2928fc48fa0e",
+      "amount": 699,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.505Z",
+      "updatedAt": "2026-06-24T03:26:09.505Z"
+    },
+    {
+      "_id": "ea077ddc-8273-41d9-95fd-da5a737f56c0",
+      "bookingId": "b0aef4ac-f1ab-459d-a61f-d4f002a8980f",
+      "amount": 399,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "7b86cafc-800a-44f5-be4e-bf00885a1e1b",
+      "bookingId": "b9dcdf4e-3d97-4f64-acfc-82d38a6c19a8",
+      "amount": 1499,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "e2277e10-0a9a-4c4b-9077-79ef13401bca",
+      "bookingId": "d1059fd7-a41a-4300-bc88-acb4f4eec315",
+      "amount": 399,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "6b0e9d32-bcef-45cd-9f15-7a158057612e",
+      "bookingId": "7c7ae4da-4f38-43ba-a93e-6986b26fa63a",
+      "amount": 699,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "ef7bd256-7dc3-4d3d-8b18-f59512597e6f",
+      "bookingId": "203e8f58-0a8f-4386-a8d1-efd6acc61037",
+      "amount": 1499,
+      "status": "refunded",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "16e52f0c-ee1c-4980-80ee-54e94c7dc73c",
+      "bookingId": "f8da48c4-8753-4574-8f15-e6ef4d4b529c",
+      "amount": 699,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    },
+    {
+      "_id": "dc98732e-e562-45c5-8f29-d959c052fcb5",
+      "bookingId": "2abf7ce0-f9ff-4086-adaa-495e4c726837",
+      "amount": 399,
+      "status": "paid",
+      "method": "Mock UPI",
+      "createdAt": "2026-06-24T03:26:09.506Z",
+      "updatedAt": "2026-06-24T03:26:09.506Z"
+    }
+  ]
+}

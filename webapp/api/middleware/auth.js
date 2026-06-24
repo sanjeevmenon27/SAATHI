@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { config } from "../config.js";
+import { envConfig } from "../config.js";
 import { isDbConnected } from "../db.js";
 import { getMockUserPayload, initializeMockData } from "../mockStore.js";
 import { User } from "../models/User.js";
@@ -28,7 +28,7 @@ export const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, config.jwtSecret);
+    const decoded = jwt.verify(token, envConfig.jwtSecret);
     let user;
 
     if (isDbConnected()) {
